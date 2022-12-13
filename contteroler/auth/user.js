@@ -6,7 +6,7 @@ import Jwtservice from '../../services/Jwtservice';
 import mongoose from 'mongoose';
 
 
-const usercon = {
+// const usercon = {
 
     me:async (req,res,next)=>{
         
