@@ -9,6 +9,6 @@ const userSchema = new Schema({
 }, { timestamps: true });
 
 const users = mongoose.model('users', userSchema);
-
-export default {users};
+let a = 100;
+export default users;
 
