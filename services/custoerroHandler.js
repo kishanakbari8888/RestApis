@@ -14,6 +14,13 @@ class custoerroHandler extends Error{
     }
 
 
+    static unauthorization(message = 'unauthorization!'){
+        return new custoerroHandler(401,message);
+    }
+
+    static notFound(message = '404 NotFound!'){
+        return new custoerroHandler(404,message);
+    }
 
 
 

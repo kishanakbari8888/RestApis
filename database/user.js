@@ -9,6 +9,5 @@ const userSchema = new Schema({
 }, { timestamps: true });
 
 const users = mongoose.model('users', userSchema);
-let a = 100;
 export default users;
 
