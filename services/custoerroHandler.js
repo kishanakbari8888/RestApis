@@ -9,6 +9,11 @@ class custoerroHandler extends Error{
         return new custoerroHandler(409,message);
     }
 
+    static wrongCredentials(message = 'username or password is wrong!'){
+        return new custoerroHandler(401,message);
+    }
+
+
 
 
 

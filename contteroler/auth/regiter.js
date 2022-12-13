@@ -5,11 +5,10 @@ import bcrypt from 'bcrypt';
 import Jwtservice from '../../services/Jwtservice';
 import mongoose from 'mongoose';
 
-console.log(Jwtservice);
 
 const registercon = {
 
-    async register(req,res,next){
+    register:async (req,res,next)=>{
         
         const registerSchema = Joi.object({
             name: Joi.string().min(3).max(30).required(),
@@ -69,7 +68,6 @@ const registercon = {
         res.json({access_token:access_token});
     }
 }
-
 
 export default registercon;
 
