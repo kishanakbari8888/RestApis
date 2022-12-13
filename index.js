@@ -2,15 +2,13 @@ import express from 'express';
 import { app_port,app_p} from './config';
 import router from './Router';
 import errorHandler from './middleware/errorHandler.js';
+import mongoose from 'mongoose';
 const app = express();
-
 app.use(express.json());
 
 
 
 app.use(router);
-
-
 app.use(errorHandler);
 
 
