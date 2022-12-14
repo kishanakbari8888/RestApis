@@ -1,6 +1,6 @@
 import Joi from 'joi'
 import custoerroHandler from '../../services/custoerroHandler';
-import {users} from '../../database/index.js';
+import {refrecetoken, users} from '../../database/index.js';
 import bcrypt from 'bcrypt';
 import Jwtservice from '../../services/Jwtservice';
 import mongoose from 'mongoose';
@@ -26,6 +26,7 @@ const logincon = {
         
         try{
             const userd = await users.findOne({email:req.body.email});
+            console.log(userd);
             if(!userd)
             {
                 next(custoerroHandler.wrongCredentials());
@@ -40,7 +41,13 @@ const logincon = {
             
 
             let access_token = Jwtservice.sign({_id:userd._id,role:userd.role})
-            res.json({access_token:access_token});
+            let refresh_token = Jwtservice.sign({_id:userd._id,role:userd.role},'1y','thisisrefresh');
+
+            await refrecetoken.create({token:refresh_token});
+            res.json({
+                access_token,
+                refresh_token
+            });
         
         }catch(err)
         {

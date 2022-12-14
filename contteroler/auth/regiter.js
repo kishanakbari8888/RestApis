@@ -1,6 +1,6 @@
 import Joi from 'joi'
 import custoerroHandler from '../../services/custoerroHandler';
-import {users} from '../../database/index.js';
+import {refrecetoken, users} from '../../database/index.js';
 import bcrypt from 'bcrypt';
 import Jwtservice from '../../services/Jwtservice';
 import mongoose from 'mongoose';
@@ -52,20 +52,30 @@ const registercon = {
 
         
 
-        let access_token = 'kishan';
+        let access_token ,refresh_token ;
         try{
+            
             const result = await user.save();
             console.log(result);
             access_token = Jwtservice.sign({_id:result._id,role:result.role})
+            refresh_token = Jwtservice.sign({_id:result._id,role:result.role},'1y','thisisrefresh');
+            
+            await refrecetoken.create({token:refresh_token});
+
         }catch(err){
+
             return next(err);
+        
         }
 
 
 
 
 
-        res.json({access_token:access_token});
+        res.json({
+            access_token:access_token,
+            refresh_token:refresh_token
+        });
     }
 }
 

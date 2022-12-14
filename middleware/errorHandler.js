@@ -4,6 +4,9 @@ import custoerroHandler from "../services/custoerroHandler";
 
 const errorHandler = (err, req, res, next) => {
     let statusCode = 500;
+    console.log('🧐🧐🧐🧐🧐🧐🧐')
+    console.log(err.message);
+    console.log('🧐🧐🧐🧐🧐🧐🧐')
     let data = {
         message: 'Internal server error',
     }
