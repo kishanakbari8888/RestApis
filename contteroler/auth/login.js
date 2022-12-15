@@ -40,8 +40,8 @@ const logincon = {
             }
             
 
-            let access_token = Jwtservice.sign({_id:userd._id,role:userd.role})
-            let refresh_token = Jwtservice.sign({_id:userd._id,role:userd.role},'1y','thisisrefresh');
+            const access_token = Jwtservice.sign({_id:userd._id,role:userd.role})
+            const refresh_token = Jwtservice.sign({_id:userd._id,role:userd.role},'1y','thisisrefresh');
 
             await refrecetoken.create({token:refresh_token});
             res.json({
@@ -54,7 +54,24 @@ const logincon = {
             return next(err);
         }
 
+    },
+
+    logout: async (req,res,next)=>{
+
+        try{
+
+            await refrecetoken.deleteOne({token:req.body.refresh_token})
+
+        }catch(err){
+            return next(err);
+        }
+
+        res.json({mess:'succesdfull'});
+
     }
+
+
+
 }
 
 export default logincon;

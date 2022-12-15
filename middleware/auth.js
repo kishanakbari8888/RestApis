@@ -9,9 +9,8 @@ const auth = async (req,res,next)=>{
     {
         return next(custoerroHandler.unauthorization());
     }
-
+    
     let token = authHeader.split(' ')[1];
-    console.log(token);
 
     try{
         

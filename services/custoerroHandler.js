@@ -5,6 +5,10 @@ class custoerroHandler extends Error{
         this.message = msg;
     }
 
+    static orinalmess(message){
+        return new custoerroHandler(555,message);
+    }
+
     static alreadyExist(message){
         return new custoerroHandler(409,message);
     }

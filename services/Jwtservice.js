@@ -12,7 +12,7 @@ class Jwtservice{
     }
 
     // decodey
-    static verify(token,secret)
+    static verify(token,secret=JWT_SECRET)
     {
         return jwt.verify(token,secret);
     }
